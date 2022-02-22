@@ -7,7 +7,7 @@ import '../main.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import '../reuseable.dart';
 import '../constants.dart';
-
+import 'chat_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = '/welcomeScreen';
@@ -80,12 +80,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             ),
             ReuseableButton(
               btnText: "Login",
-              onPressed:  () => Navigator.pushNamed(context,LoginScreen.id),
+              onPressed:  () => Navigator.pushReplacementNamed(context,LoginScreen.id),
               bgColor: Colors.lightBlueAccent,
             ),
             ReuseableButton(
               btnText: "Register",
-              onPressed:  () => Navigator.pushNamed(context,RegistrationScreen.id),
+              onPressed:  () => Navigator.pushReplacementNamed(context,RegistrationScreen.id),
               bgColor: Colors.blueAccent,
             ),
           ],

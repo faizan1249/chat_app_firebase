@@ -1,5 +1,6 @@
 import 'package:chat_app_flutter/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../reuseable.dart';
 import '../constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -32,17 +33,23 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: "logo",
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: "logo",
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 48.0,
               ),
               TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  inputFormatters: [
+                    FilteringTextInputFormatter(RegExp(r'[a-zA-Z]'), allow: true),
+                  ],
                 onChanged: (value) {
                   user_email = value;
                   print(user_email);
@@ -54,11 +61,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 8.0,
               ),
               TextField(
+
                 onChanged: (value) {
                   user_pass = value;
                   print(user_pass);
                   //Do something with the user input.
                 },
+
                 decoration: kLoginFieldPasswordDecoration,
               ),
               SizedBox(

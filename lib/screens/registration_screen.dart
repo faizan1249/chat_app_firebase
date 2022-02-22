@@ -1,6 +1,7 @@
 import 'package:chat_app_flutter/screens/chat_screen.dart';
 import 'package:chat_app_flutter/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../reuseable.dart';
 import '../constants.dart';
 import 'package:chat_app_flutter/reuseable.dart';
@@ -33,11 +34,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: "logo",
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: "logo",
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
@@ -45,6 +48,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               TextField(
                 keyboardType: TextInputType.emailAddress,
+                inputFormatters: [
+                  FilteringTextInputFormatter(RegExp(r'[a-zA-Z]'), allow: true);
+                ],
                 onChanged: (value) {
                   email = value;
                   print(email);
